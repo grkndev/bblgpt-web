@@ -1,30 +1,34 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
   Bot,
   Command,
+  Container,
+  Cpu,
+  FolderTree,
   Frame,
   GalleryVerticalEnd,
+  House,
   Map,
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavProjects } from "@/components/nav-projects";
+import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // This is sample data.
 const data = {
@@ -52,22 +56,27 @@ const data = {
   ],
   navMain: [
     {
+      title: "Home",
+      url: "/dashboard",
+      icon: House,
+    },
+    {
       title: "Playground",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "History",
-          url: "#",
+          url: "/dashboard/playground/history",
         },
         {
           title: "Starred",
-          url: "#",
+          url: "/dashboard/playground/starred",
         },
         {
           title: "Settings",
-          url: "#",
+          url: "/dashboard/playground/settings",
         },
       ],
     },
@@ -77,39 +86,16 @@ const data = {
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Chat Bot",
+          url: "/dashboard/models/chat-bot",
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: "Image",
+          url: "/dashboard/models/image",
         },
         {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "VCT",
+          url: "/dashboard/models/vct",
         },
       ],
     },
@@ -120,41 +106,41 @@ const data = {
       items: [
         {
           title: "General",
-          url: "#",
+          url: "/dashboard/settings/general",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Twitter API",
+          url: "/dashboard/settings/twitter",
         },
         {
-          title: "Billing",
-          url: "#",
+          title: "LLM",
+          url: "/dashboard/settings/llm",
         },
         {
           title: "Limits",
-          url: "#",
+          url: "/dashboard/settings/limits",
         },
       ],
     },
   ],
-  projects: [
+  server: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
+      name: "Manage",
+      url: "/dashboard/server/manage",
+      icon: Cpu,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
+      name: "FTP",
+      url: "/dashboard/server/ftp",
+      icon: FolderTree,
     },
     {
-      name: "Travel",
-      url: "#",
-      icon: Map,
+      name: "Containers",
+      url: "/dashboard/server/containers",
+      icon: Container,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -164,12 +150,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavProjects projects={data.server} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
