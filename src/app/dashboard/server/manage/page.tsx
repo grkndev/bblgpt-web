@@ -31,12 +31,46 @@ export default function ServerManage() {
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div className="aspect-video rounded-xl bg-muted/50 flex flex-col gap-4 p-4">
-          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)] absolute">
+      {/* Grid container with responsive columns */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Server Information Card */}
+        <div className="rounded-xl bg-muted/50 flex flex-col gap-4 p-4">
+          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)]">
             Server Information
           </h1>
-          <div className="flex flex-col items-center justify-center gap-2  h-full relative">
+          <div className="flex flex-col items-center justify-between gap-2 h-full">
+            <ServerProps icon={Cpu} title="CPU" value="Intel Xeon E5 2699 v4" />
+            <Separator />
+            <ServerProps
+              icon={Network}
+              title="IP Address"
+              value="192.168.1.1"
+            />
+            <Separator />
+
+            <ServerProps
+              icon={Computer}
+              title="OS"
+              value="Windows Server 2019 - COMNET"
+            />
+            <Separator />
+            <ServerProps
+              icon={Activity}
+              title="Uptime"
+              value={dayjs
+                .duration(dayjs().diff(date))
+                .format("D [gün], H [saat]")}
+            />
+          </div>
+        </div>
+
+        {/* CPU Usage Card */}
+        <div className="rounded-xl bg-muted/50 p-4 gap-4 flex flex-col">
+          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)]">
+            Server Usage
+          </h1>
+
+          <div className="w-full md:w-auto flex flex-col gap-4">
             <ServerProps icon={Cpu} title="CPU" value="2 Core" />
             <Separator />
             <ServerProps icon={Network} title="Network" value="16 kb/s" />
@@ -52,90 +86,55 @@ export default function ServerManage() {
               title="Disk"
               value="46% - 14.19/31 GB"
             />
-            <Separator />
-            <ServerProps
-              icon={Computer}
-              title="OS"
-              value="Windows Server 2019 - COMNET"
-            />
-            <Separator />
-            <ServerProps
-              icon={Activity}
-              title="Uptime"
-              value={dayjs
-                .duration(dayjs().diff(date))
-                .format("D [gün], H [saat], m [dakika], s [saniye]")}
-            />
           </div>
         </div>
-        <div className="aspect-video rounded-xl bg-muted/50 p-4 gap-4  flex flex-col ">
-          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)] absolute">
-            CPU Usage
-          </h1>
-          <div className="flex flex-row items-center justify-between gap-4 w-full  h-full relative">
-            <div className="w-auto flex flex-col gap-4">
-              <ServerProps
-                icon={Cpu}
-                title="CPU"
-                className="gap-4"
-                value="Intel Xeon E5 2699 v4"
-              />
-              <ServerProps icon={Microchip} title="CPU Core" value="2" />
-              <ServerProps icon={Monitor} title="CPU Usage" value="%14" />
-            </div>
 
-            <Gauge
-              value={14}
-              size={"xl"}
-              primary={primaryColorList}
-              secondary={secondaryColorList}
-              showValue
-              showAnimation
-            />
-          </div>
-        </div>
-        <div className="aspect-video rounded-xl bg-muted/50 p-4  flex flex-col">
-          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)] absolute">
+        {/* Manage Server Card */}
+        <div className="rounded-xl bg-muted/50 p-4 gap-4 flex flex-col md:col-span-1 ">
+          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)]">
             Manage Server
           </h1>
-          <div className="flex flex-row items-center justify-center gap-4  h-full relative">
-            <Button className="flex flex-col size-24 rounded-2xl items-center justify-center">
-              <Play size={48} />
-              <span className="font-[family-name:var(--font-geist-sans)] ">
+          <div className="flex flex-row items-center justify-between sm:justify-center gap-4 h-full">
+            <Button className="w-full  flex flex-col h-full sm:size-24 rounded-2xl items-center justify-center">
+              <Play className="size-12 mb-2" />
+              <span className="font-[family-name:var(--font-geist-sans)]">
                 Start
               </span>
             </Button>
             <Button
               variant={"destructive"}
-              className="flex flex-col size-24 rounded-2xl items-center justify-center"
+              className="w-full  flex flex-col h-full sm:size-24 rounded-2xl items-center justify-center"
             >
-              <Power className=" size-4" />
+              <Power className="size-12 mb-2" />
               <span className="font-normal">Stop</span>
             </Button>
             <Button
               variant={"outline"}
-              className="flex flex-col size-24  rounded-2xl items-center justify-center"
+              className="w-full  flex flex-col h-full sm:size-24 rounded-2xl items-center justify-center"
             >
-              <RotateCcw className=" size-4" />
+              <RotateCcw className="size-12 mb-2" />
               <span className="font-normal">Restart</span>
             </Button>
           </div>
         </div>
       </div>
-      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4 gap-4 flex flex-col">
-        <div className="item-center flex flex-row gap-4">
-          <Container />
-          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)] ">
+
+      {/* Containers Section */}
+      <div className="flex-1 rounded-xl bg-muted/50 md:min-h-min p-4 gap-4 flex flex-col w-full">
+        <div className="flex flex-row items-center gap-2 mb-2">
+          <Container className="size-6" />
+          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)]">
             Containers
           </h1>
         </div>
-        <div>
+        <div className="w-full">
           <ContainerTable />
         </div>
       </div>
     </div>
   );
 }
+
 const primaryColorList = {
   "0": "#4CAF50",
   "10": "#4CAF50",
@@ -152,7 +151,7 @@ const primaryColorList = {
 
 const secondaryColorList = {
   "0": "rgba(76, 175, 80, 0.25)",
-  "10": "rgba(76, 175, 80, 0.25)",
+  "10": "rgb(76, 175, 80, 0.25)",
   "20": "rgba(76, 175, 80, 0.25)",
   "30": "rgba(76, 175, 80, 0.25)",
   "40": "rgba(255, 235, 59, 0.25)",
