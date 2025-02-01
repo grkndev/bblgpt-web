@@ -62,13 +62,13 @@ export default function ContainerTable() {
                 Uptime: {dayjs().from(task.startedAt, true)}
               </div>
               <div className="flex gap-2 mt-2">
-                <Button size="sm" className="flex-1">
+                <Button variant={"default"} size="sm" className="flex-1">
                   <Play className="h-4 w-4 mr-1" /> Start
                 </Button>
-                <Button size="sm" variant="destructive" className="flex-1">
+                <Button size="sm" variant={"destructive"} className="flex-1">
                   <Power className="h-4 w-4 mr-1" /> Stop
                 </Button>
-                <Button size="sm" variant="outline" className="flex-1">
+                <Button size="sm" variant={"outline"} className="flex-1">
                   <RotateCcw className="h-4 w-4 mr-1" /> Restart
                 </Button>
               </div>
@@ -109,14 +109,14 @@ export default function ContainerTable() {
                 {dayjs(task.startedAt).format("DD/MM/YYYY HH:mm")}
               </TableCell>
               <TableCell>{dayjs().from(task.startedAt, true)}</TableCell>
-              <TableCell className="text-right space-x-2">
-                <Button size="sm">
+              <TableCell className="justify-self-end w-fit flex space-x-2 ">
+                <Button size="sm" variant={"ghost"}>
                   <Play className="h-4 w-4" />
                 </Button>
-                <Button size="sm" variant="destructive">
+                <Button size="sm" variant="ghost">
                   <Power className="h-4 w-4" />
                 </Button>
-                <Button size="sm" variant="outline">
+                <Button size="sm" variant="ghost">
                   <RotateCcw className="h-4 w-4" />
                 </Button>
               </TableCell>
