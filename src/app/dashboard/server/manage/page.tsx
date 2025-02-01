@@ -5,6 +5,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import duration from "dayjs/plugin/duration";
 import {
   Activity,
+  Computer,
   Container,
   Cpu,
   HardDrive,
@@ -20,6 +21,7 @@ import {
 import { Gauge } from "@suyalcinkaya/gauge";
 import { Button } from "@/components/ui/button";
 import ContainerTable from "@/components/dashboard/server/manage/ContainerTable";
+import { Separator } from "@/components/ui/separator";
 
 dayjs.extend(relativeTime);
 dayjs.extend(duration);
@@ -31,25 +33,40 @@ export default function ServerManage() {
     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
       <div className="grid auto-rows-min gap-4 md:grid-cols-3">
         <div className="aspect-video rounded-xl bg-muted/50 flex flex-col gap-4 p-4">
-          <ServerProps
-            icon={Activity}
-            title="Uptime"
-            value={dayjs
-              .duration(dayjs().diff(date))
-              .format("D [gün], H [saat], m [dakika], s [saniye]")}
-          />
-          <ServerProps icon={Cpu} title="CPU" value="2" />
-          <ServerProps
-            icon={MemoryStick}
-            title="Memory"
-            value="75% - 369/2048 MB"
-          />
-          <ServerProps icon={Network} title="Network" value="16 kb/s" />
-          <ServerProps
-            icon={HardDrive}
-            title="Disk"
-            value="46% - 14.19/31 GB"
-          />
+          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)] absolute">
+            Server Information
+          </h1>
+          <div className="flex flex-col items-center justify-center gap-2  h-full relative">
+            <ServerProps icon={Cpu} title="CPU" value="2 Core" />
+            <Separator />
+            <ServerProps icon={Network} title="Network" value="16 kb/s" />
+            <Separator />
+            <ServerProps
+              icon={MemoryStick}
+              title="Memory"
+              value="75% - 369/2048 MB"
+            />
+            <Separator />
+            <ServerProps
+              icon={HardDrive}
+              title="Disk"
+              value="46% - 14.19/31 GB"
+            />
+            <Separator />
+            <ServerProps
+              icon={Computer}
+              title="OS"
+              value="Windows Server 2019 - COMNET"
+            />
+            <Separator />
+            <ServerProps
+              icon={Activity}
+              title="Uptime"
+              value={dayjs
+                .duration(dayjs().diff(date))
+                .format("D [gün], H [saat], m [dakika], s [saniye]")}
+            />
+          </div>
         </div>
         <div className="aspect-video rounded-xl bg-muted/50 p-4 gap-4  flex flex-col ">
           <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)] absolute">
