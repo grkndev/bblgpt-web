@@ -5,6 +5,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import duration from "dayjs/plugin/duration";
 import {
   Activity,
+  Container,
   Cpu,
   HardDrive,
   MemoryStick,
@@ -18,6 +19,7 @@ import {
 } from "lucide-react";
 import { Gauge } from "@suyalcinkaya/gauge";
 import { Button } from "@/components/ui/button";
+import ContainerTable from "@/components/dashboard/server/manage/ContainerTable";
 
 dayjs.extend(relativeTime);
 dayjs.extend(duration);
@@ -103,7 +105,17 @@ export default function ServerManage() {
           </div>
         </div>
       </div>
-      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min p-4 gap-4 flex flex-col">
+        <div className="item-center flex flex-row gap-4">
+          <Container />
+          <h1 className="text-xl font-bold font-[family-name:var(--font-geist-sans)] ">
+            Containers
+          </h1>
+        </div>
+        <div>
+          <ContainerTable />
+        </div>
+      </div>
     </div>
   );
 }
