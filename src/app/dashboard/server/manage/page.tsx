@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import duration from "dayjs/plugin/duration";
@@ -10,15 +10,12 @@ import {
   Cpu,
   HardDrive,
   MemoryStick,
-  Microchip,
-  Monitor,
   Network,
   Play,
   Power,
   RotateCcw,
   type LucideIcon,
 } from "lucide-react";
-import { Gauge } from "@suyalcinkaya/gauge";
 import { Button } from "@/components/ui/button";
 import ContainerTable from "@/components/dashboard/server/manage/ContainerTable";
 import { Separator } from "@/components/ui/separator";
@@ -134,34 +131,6 @@ export default function ServerManage() {
     </div>
   );
 }
-
-const primaryColorList = {
-  "0": "#4CAF50",
-  "10": "#4CAF50",
-  "20": "#4CAF50",
-  "30": "#4CAF50",
-  "40": "#FFEB3B",
-  "50": "#FFEB3B",
-  "60": "#FF9800",
-  "70": "#FF9800",
-  "80": "#F44336",
-  "90": "#F44336",
-  "100": "#F44336",
-};
-
-const secondaryColorList = {
-  "0": "rgba(76, 175, 80, 0.25)",
-  "10": "rgb(76, 175, 80, 0.25)",
-  "20": "rgba(76, 175, 80, 0.25)",
-  "30": "rgba(76, 175, 80, 0.25)",
-  "40": "rgba(255, 235, 59, 0.25)",
-  "50": "rgba(255, 235, 59, 0.25)",
-  "60": "rgba(255, 152, 0, 0.25)",
-  "70": "rgba(255, 152, 0, 0.25)",
-  "80": "rgba(244, 67, 54, 0.25)",
-  "90": "rgba(244, 67, 54, 0.25)",
-  "100": "rgba(244, 67, 54, 0.25)",
-};
 
 function ServerProps({
   icon: Icon,
