@@ -150,7 +150,7 @@ function ServerProps({
       <h1 className="font-bold font-[family-name:var(--font-geist-mono)]">
         {Icon && <Icon className="inline-block mr-1 size-5" />} {title}
       </h1>
-      <h3 className=" font-[family-name:var(--font-geist-mono)]">{value}</h3>
+      <h3 className="text-sm font-[family-name:var(--font-geist-mono)]">{value}</h3>
     </div>
   );
 }
