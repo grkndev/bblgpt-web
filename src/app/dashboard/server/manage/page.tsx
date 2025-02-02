@@ -20,8 +20,7 @@ import { Button } from "@/components/ui/button";
 import ContainerTable from "@/components/dashboard/server/manage/ContainerTable";
 import { Separator } from "@/components/ui/separator";
 
-dayjs.extend(relativeTime);
-dayjs.extend(duration);
+
 
 export default function ServerManage() {
   const date = new Date("2025-01-29T03:24:00");
