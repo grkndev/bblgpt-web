@@ -31,72 +31,71 @@ dayjs.extend(duration);
 export default function ContainerTable() {
   const taskList = getContainers();
 
-  // Mobile card view component
   const MobileCardView = () => (
-    <div className="flex flex-col gap-4 md:hidden">
+    <div className="space-y-4 md:hidden">
       {taskList.map((task) => (
         <Card key={task.id}>
           <CardContent className="pt-6">
-            <div className="flex flex-col gap-2">
-              <div className="flex justify-between">
-                <span className="font-bold">{task.id}</span>
-                <span className="flex items-center gap-2">
-                  {(() => {
-                    switch (task.status) {
-                      case TaskStatus.Active:
-                        return (
-                          <CircleCheck className="h-4 w-4 text-green-500" />
-                        );
-                      case TaskStatus.Inactive:
-                        return <CircleAlert className="h-4 w-4 text-red-500" />;
-                      case TaskStatus.Stopped:
-                        return <Power className="h-4 w-4 text-red-500" />;
-                      default:
-                        return (
-                          <RotateCcw className="h-4 w-4 text-yellow-500" />
-                        );
-                    }
-                  })()}
-                  {task.status}
-                </span>
-              </div>
-              <div className="font-medium">{task.name}</div>
-              <div className="text-sm text-muted-foreground">{task.tag}</div>
-              <div className="text-sm text-muted-foreground">
-                Started: {dayjs(task.startedAt).format("DD/MM/YYYY HH:mm")}
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Uptime: {dayjs().from(task.startedAt, true)}
-              </div>
-              <div className="flex gap-2 mt-2">
-                <Button
-                  disabled={task.status === "Active"}
-                  variant="default"
-                  size="sm"
-                  className="flex-1"
-                >
-                  <Play className="h-4 w-4 mr-1" /> Start
-                </Button>
-                <Button
-                  disabled={task.status !== "Active"}
-                  size="sm"
-                  variant="destructive"
-                  className="flex-1"
-                >
-                  <Power className="h-4 w-4 mr-1" /> Stop
-                </Button>
-                <Button
-                  disabled={task.status !== "Active"}
-                  size="sm"
-                  variant="outline"
-                  className="flex-1"
-                >
-                  <RotateCcw className="h-4 w-4 mr-1" /> Restart
-                </Button>
-                <Button size="sm" variant="outline" className="flex-1">
-                  <Terminal className="h-4 w-4 mr-1" />
-                </Button>
-              </div>
+            <div className="flex justify-between">
+              <span className="font-bold">{task.id}</span>
+              <span className="flex items-center gap-2">
+                {(() => {
+                  switch (task.status) {
+                    case TaskStatus.Active:
+                      return <CircleCheck className="h-4 w-4 text-green-500" />;
+                    case TaskStatus.Inactive:
+                      return <CircleAlert className="h-4 w-4 text-red-500" />;
+                    case TaskStatus.Stopped:
+                      return <Power className="h-4 w-4 text-red-500" />;
+                    default:
+                      return <RotateCcw className="h-4 w-4 text-yellow-500" />;
+                  }
+                })()}
+                {task.status}
+              </span>
+            </div>
+            <div className="font-medium mt-2">{task.name}</div>
+            <div className="text-sm text-muted-foreground">{task.tag}</div>
+            <div className="text-sm text-muted-foreground mt-2">
+              Started: {dayjs(task.startedAt).format("DD/MM/YYYY HH:mm")}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Uptime: {dayjs().from(task.startedAt, true)}
+            </div>
+            <div className="flex gap-2 mt-4">
+              <Button
+                disabled={task.status === TaskStatus.Active}
+                size="sm"
+                variant="default"
+                className="flex-1"
+              >
+                <Play className="h-4 w-4 mr-1" /> Start
+              </Button>
+              <Button
+                disabled={task.status !== TaskStatus.Active}
+                size="sm"
+                variant="destructive"
+                className="flex-1"
+              >
+                <Power className="h-4 w-4 mr-1" /> Stop
+              </Button>
+            </div>
+            <div className="flex gap-2 mt-2">
+              <Button
+                disabled={task.status !== TaskStatus.Active}
+                size="sm"
+                variant="outline"
+                className="flex-1"
+              >
+                <RotateCcw className="h-4 w-4 mr-1" /> Restart
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="flex-1"
+              >
+                <Terminal className="h-4 w-4 mr-1" /> Console
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -104,17 +103,15 @@ export default function ContainerTable() {
     </div>
   );
 
-  // Desktop table view
   const DesktopTableView = () => (
-    <div className="hidden md:block overflow-x-auto">
+    <div className="hidden md:block">
       <Table>
-        <TableCaption>A list of containers.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Task ID</TableHead>
-            <TableHead>Task Name</TableHead>
-            <TableHead>Task Status</TableHead>
-            <TableHead>Task Tag</TableHead>
+            <TableHead>ID</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Tag</TableHead>
             <TableHead>Started At</TableHead>
             <TableHead>Uptime</TableHead>
             <TableHead className="text-right">Actions</TableHead>
@@ -150,6 +147,7 @@ export default function ContainerTable() {
                   disabled={task.status === TaskStatus.Active}
                   size="sm"
                   variant="ghost"
+                  className="hover:bg-green-100"
                 >
                   <Play className="h-4 w-4" />
                 </Button>
@@ -157,6 +155,7 @@ export default function ContainerTable() {
                   disabled={task.status !== TaskStatus.Active}
                   size="sm"
                   variant="ghost"
+                  className="hover:bg-red-100"
                 >
                   <Power className="h-4 w-4" />
                 </Button>
@@ -164,10 +163,15 @@ export default function ContainerTable() {
                   disabled={task.status !== TaskStatus.Active}
                   size="sm"
                   variant="ghost"
+                  className="hover:bg-yellow-100"
                 >
                   <RotateCcw className="h-4 w-4" />
                 </Button>
-                <Button size="sm" variant="ghost">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="hover:bg-slate-100"
+                >
                   <Terminal className="h-4 w-4" />
                 </Button>
               </TableCell>
