@@ -7,8 +7,10 @@ import {
   Command,
   Container,
   Cpu,
+  FileClock,
   FolderTree,
   GalleryVerticalEnd,
+  Github,
   House,
   Settings2,
   SquareTerminal,
@@ -25,6 +27,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { NavGit } from "./nav-git";
 
 // This is sample data.
 const data = {
@@ -136,6 +139,18 @@ const data = {
       icon: Container,
     },
   ],
+  git: [
+    {
+      name: "Repository",
+      url: "/dashboard/git/repository",
+      icon: Github,
+    },
+    {
+      name: "Logs",
+      url: "/dashboard/git/logs",
+      icon: FileClock,
+    },
+  ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -147,6 +162,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.server} />
+        <NavGit projects={data.git} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
