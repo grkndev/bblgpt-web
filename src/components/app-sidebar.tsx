@@ -66,13 +66,14 @@ const data = {
       isActive: false,
       items: [
         {
+          title: "Chat",
+          url: "/dashboard/playground/chat",
+        },
+        {
           title: "History",
           url: "/dashboard/playground/history",
         },
-        {
-          title: "Starred",
-          url: "/dashboard/playground/starred",
-        },
+
         {
           title: "Settings",
           url: "/dashboard/playground/settings",
